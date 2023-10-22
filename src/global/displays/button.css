@@ -1,0 +1,23 @@
+button {
+  display: inline-block;
+  padding: 0.6rem;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  background-color: #007bff;
+  color: #fff;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover Styles */
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Disabled Styles */
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

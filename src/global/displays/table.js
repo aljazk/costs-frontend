@@ -38,9 +38,13 @@ export class Table extends Display {
         this.table.appendChild(tr);
         for (const [key, value] of Object.entries(item)) {
           const td = document.createElement('td');
-          const span = document.createElement('span');
-          td.appendChild(span);
-          span.innerHTML = JSON.stringify(value, null, 2);
+          if (value instanceof Node) {
+            td.appendChild(value);
+          } else {
+            const span = document.createElement('span');
+            span.innerText = value;
+            td.appendChild(span);
+          }
           tr.appendChild(td);
         }
       }

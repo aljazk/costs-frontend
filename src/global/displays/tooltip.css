@@ -1,0 +1,13 @@
+.custom_title:hover::before {
+  content: attr(customTitle); /* Display the title text */
+  display: block;
+  position: absolute;
+  background: #333; /* Background color for the title */
+  color: white; /* Text color for the title */
+  padding: 0.4rem;
+  border-radius: 5px;
+  font-size: smaller;
+  margin-top: 1.6rem;
+  margin-left: -0.4rem;
+  pointer-events: none;
+}

@@ -10,6 +10,9 @@ export class Button extends Display {
   constructor(text, appendTo, onClick) {
     super('button', appendTo);
     this.button = this.element;
+    this.span = document.createElement('span');
+    this.button.appendChild(this.span);
+    this.loadStyle(import.meta.url, 'button.css');
     this.setText(text);
     if (onClick) {
       this.button.addEventListener('click', onClick);
@@ -21,7 +24,7 @@ export class Button extends Display {
    * @param {string} text Text to display on button.
    */
   setText(text) {
-    this.button.innerText = text;
+    this.span.innerText = text;
   }
 
   addOnClickEvent(onClick) {

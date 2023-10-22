@@ -9,7 +9,6 @@ export class CostsForm extends Form {
   createInputs() {
     this.addInput('value');
     this.dateInput = this.addInput('time', 'date');
-    this.dateInput.value = new Date().toISOString().substr(0, 10);
-    console.log(this.dateInput);
+    this.dateInput.value = new Date().toISOString().substring(0, 10);
   }
 }

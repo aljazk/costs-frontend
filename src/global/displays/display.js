@@ -1,4 +1,5 @@
 import { FileDirectory } from '../file-directory.js';
+import { CSSLoader } from './css-loader.js';
 
 export class Display {
   /**
@@ -16,28 +17,31 @@ export class Display {
 
   /**
    *
-   * @param {string} metaUrl import.meta.css
-   * @param {string} fileName file.css
+   * @param {string} metaUrl example: import.meta.url
+   * @param {string} fileName exmaple: file.css
    */
   loadStyle(metaUrl, fileName) {
-    const style = document.createElement('style');
-    fetch(new FileDirectory().get(metaUrl) + fileName)
-      .then((response) => response.text())
-      .then((value) => {
-        style.innerHTML = value;
-      });
-    this.element.appendChild(style);
+    try {
+      new CSSLoader().load(new FileDirectory().get(metaUrl) + fileName);
+    } catch (error) {
+      if (error === 'Already loaded.') {
+        // Its fine, just skip.
+      } else {
+        throw error;
+      }
+    }
   }
 
   create() {
     this.element = document.createElement(this.name);
   }
 
-  /**
-   * Removes all child nodes, except style tag
-   */
+  reset() {
+    this.removeAllChildNodes();
+  }
+
   removeAllChildNodes() {
-    this.removeAllChildElementsExcept(['style']);
+    this.removeAllChildElementsExcept([]);
   }
 
   /**
