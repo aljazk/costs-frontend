@@ -13,4 +13,8 @@ export class CostsRepository extends Repository {
   create(body) {
     return super.post(body);
   }
+
+  update(id, body) {
+    return super.put(id, body);
+  }
 }

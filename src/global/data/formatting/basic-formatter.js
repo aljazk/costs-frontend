@@ -1,6 +1,4 @@
-import { DateFormatter } from './date-formatter.js';
-
-export class ObjectFormatter {
+export class BasicFormatter {
   /**
    *
    * @param {Map<string, (value: any) => any} customKeyFormatterMap
@@ -35,14 +33,6 @@ export class ObjectFormatter {
     if (this.customKeyFormatterMap.has(key)) {
       return this.customKeyFormatterMap.get(key)(value);
     }
-    if (this.isDateFormat(value)) {
-      return new DateFormatter().format(value);
-    }
     return value;
-  }
-
-  isDateFormat(str) {
-    const datePattern = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/;
-    return datePattern.test(str);
   }
 }

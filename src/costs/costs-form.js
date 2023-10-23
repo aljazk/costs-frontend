@@ -7,8 +7,12 @@ export class CostsForm extends Form {
   }
 
   createInputs() {
-    this.addInput('value');
+    this.addInput('value', 'number');
     this.dateInput = this.addInput('time', 'date');
     this.dateInput.value = new Date().toISOString().substring(0, 10);
+  }
+
+  onCancel() {
+    this.goBack();
   }
 }

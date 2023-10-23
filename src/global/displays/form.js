@@ -1,3 +1,4 @@
+import { FormInputFormatter } from '../data/formatting/form-input-formatter.js';
 import { Button } from './button.js';
 import { Display } from './display.js';
 
@@ -8,7 +9,7 @@ export class Form extends Display {
     this.form = this.element;
     this.form.classList.add('form');
     this.createInputsHoldingDiv();
-    this.createSubmitButton();
+    this.createButtons();
     this.loadStyle(import.meta.url, 'form.css');
   }
 
@@ -21,8 +22,17 @@ export class Form extends Display {
     this.form.appendChild(this.inputsHoldingDiv);
   }
 
+  createButtons() {
+    this.createSubmitButton();
+    this.createCancelButton();
+  }
+
   createSubmitButton() {
     this.submitButton = new Button('Submit', this.form, this.submit.bind(this));
+  }
+
+  createCancelButton() {
+    this.submitButton = new Button('Cancel', this.form, this.cancel.bind(this));
   }
 
   getInputs() {
@@ -37,11 +47,24 @@ export class Form extends Display {
     return obj;
   }
 
+  fillForm(obj) {
+    const inputObj = new FormInputFormatter().formatObject(obj);
+    for (const input of this.getInputs()) {
+      console.log(input);
+      input.value = inputObj[input.name];
+    }
+  }
+
   submit($event) {
     $event.preventDefault();
     const formObject = this.getFormObject();
     console.log(formObject);
     this.onSubmit(formObject);
+  }
+
+  cancel($event) {
+    $event.preventDefault();
+    this.onCancel();
   }
 
   onSubmit() {

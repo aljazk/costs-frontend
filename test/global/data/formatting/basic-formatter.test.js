@@ -1,9 +1,9 @@
 import { expect } from 'chai';
-import { ObjectFormatter } from '../../../../src/global/data/formatting/object-formatter.js';
+import { BasicFormatter } from '../../../../src/global/data/formatting/basic-formatter.js';
 
-describe('ObjectFormatter', () => {
-  it('formatObject should call action with all values', () => {
-    const formatter = new ObjectFormatter();
+describe('BasicFormatter', () => {
+  it('formatObject should call format on all values', () => {
+    const formatter = new BasicFormatter();
     const calledWithKey = [];
     const calledWithValue = [];
     formatter.format = (key, value) => {
@@ -20,7 +20,6 @@ describe('ObjectFormatter', () => {
       e: date,
     };
     formatter.formatObject(inputObject);
-
     expect(calledWithKey).to.include('a');
     expect(calledWithKey).to.include('b');
     expect(calledWithKey).to.include('c');
@@ -34,7 +33,7 @@ describe('ObjectFormatter', () => {
   });
 
   it('should set action return value to value', () => {
-    const formatter = new ObjectFormatter();
+    const formatter = new BasicFormatter();
     formatter.format = (value) => {
       return '12';
     };
@@ -44,7 +43,7 @@ describe('ObjectFormatter', () => {
   });
 
   it('should not modify original object', () => {
-    const formatter = new ObjectFormatter();
+    const formatter = new BasicFormatter();
     formatter.format = (value) => {
       return 14;
     };
@@ -56,7 +55,7 @@ describe('ObjectFormatter', () => {
 
   it('should apply custom mapper to custom keys', () => {
     const customForamtterMap = new Map([['test', () => 14]]);
-    const formatter = new ObjectFormatter(customForamtterMap);
+    const formatter = new BasicFormatter(customForamtterMap);
     const obj = { test: 12 };
     const returnObj = formatter.formatObject(obj);
     expect(returnObj.test).equal(14);

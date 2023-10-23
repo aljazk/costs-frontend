@@ -6,7 +6,7 @@ describe('DateFormatter', () => {
     const formatter = new DateFormatter();
 
     const date = new Date('2023-10-22');
-    const formatedDate = formatter.format(date);
+    const formatedDate = formatter.formatForDisplay(date);
 
     expect(formatedDate).equal('22.10.2023');
   });
@@ -15,7 +15,7 @@ describe('DateFormatter', () => {
     const formatter = new DateFormatter();
 
     const date = '2023-10-20T19:19:02.000Z';
-    const formatedDate = formatter.format(date);
+    const formatedDate = formatter.formatForDisplay(date);
 
     expect(formatedDate).equal('20.10.2023');
   });

@@ -9,6 +9,8 @@ button {
   background-color: #007bff;
   color: #fff;
   transition: background-color 0.3s, transform 0.2s;
+  margin: 0.2rem;
+  margin-left: 0rem;
 }
 
 /* Hover Styles */
