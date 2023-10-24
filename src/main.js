@@ -15,20 +15,24 @@ const mainRouting = [
   {
     path: '',
     activate: (appendTo, path) => {
-      new ErrorView(appendTo.element);
+      if (path === '') {
+        anchorEvent('/costs')();
+      } else {
+        new ErrorView(appendTo.element);
+      }
     },
   },
 ];
 
 const router = new Router(mainRouting);
 
-router.activate(content, window.location.pathname);
-
 window.anchorEvent = (href) => ($event) => {
   $event?.preventDefault();
   window.history.pushState({}, '', href);
   router.activate(content, window.location.pathname);
 };
+
+router.activate(content, window.location.pathname);
 
 const elements = document.getElementsByTagName('a');
 for (const element of elements) {
