@@ -1,0 +1,13 @@
+div.page_loader {
+  display: flex;
+  width: 99vw;
+  height: 60vh;
+  align-items: center;
+  justify-content: center;
+}
+div.page_loader.loader > div {
+  width: 10vh;
+  height: 10vh;
+  border-width: 1vh;
+  border-top-width: 1vh;
+}

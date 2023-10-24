@@ -8,8 +8,7 @@ export class Display {
    * @param {HTMLElement} appendTo parent
    */
   constructor(htmlTag, appendTo) {
-    this.name = htmlTag;
-    this.create();
+    this.create(htmlTag);
     if (appendTo) {
       this.appendTo(appendTo);
     }
@@ -32,8 +31,8 @@ export class Display {
     }
   }
 
-  create() {
-    this.element = document.createElement(this.name);
+  create(htmlTag) {
+    this.element = document.createElement(htmlTag);
   }
 
   reset() {

@@ -1,4 +1,8 @@
+import { Anchor } from '../global/displays/anchor.js';
 import { Button } from '../global/displays/button.js';
+import { Display } from '../global/displays/display.js';
+import { Loader } from '../global/displays/loader.js';
+import { PageLoader } from '../global/displays/page-loader.js';
 import { Table } from '../global/displays/table.js';
 import { AddCostForm } from './add-cost-form.js';
 import { CostsRepository } from './cost.repository.js';
@@ -6,66 +10,28 @@ import { CostsDataFormatter } from './costs-data-formatter.js';
 import { EditCostForm } from './edit-cost-form.js';
 
 export class CostsView {
-  constructor() {
+  constructor(appendTo) {
     this.costsRepository = new CostsRepository();
 
-    this.addCostButton = new Button('Add cost', document.body);
+    this.loader = new PageLoader(appendTo);
 
-    this.table = new Table(document.body);
+    this.container = new Display('div');
 
-    this.addCostForm = new AddCostForm(document.body, () => {
-      this.updateTable();
-      this.closeAddCostForm();
-    });
-    this.addCostForm.hide();
+    this.addCostButton = new Anchor(
+      'Add cost',
+      'costs/add',
+      this.container.element
+    );
 
-    this.editCostForm = new EditCostForm(document.body, () => {
-      this.updateTable();
-      this.closeEditCostForm();
-    });
-    this.editCostForm.hide();
+    this.table = new Table(this.container.element);
 
-    this.addCostButton.addOnClickEvent(this.openAddCostForm.bind(this));
     this.updateTable();
-  }
-
-  onAddCostClick() {
-    this.toggleAddCostsForm();
-  }
-
-  openAddCostForm() {
-    this.table.hide();
-    this.addCostButton.hide();
-    this.addCostForm.show();
-  }
-
-  closeAddCostForm() {
-    this.table.show();
-    this.addCostButton.show();
-    this.addCostForm.hide();
-  }
-
-  openEditCostForm(formObject) {
-    this.table.hide();
-    this.addCostButton.hide();
-    this.editCostForm.show();
-    this.editCostForm.setId(formObject.id);
-    this.editCostForm.fillForm(formObject);
-  }
-
-  closeEditCostForm() {
-    this.table.show();
-    this.addCostButton.show();
-    this.editCostForm.hide();
   }
 
   updateTable() {
     this.costsRepository.getAll().then((data) => {
-      this.table.updateTable(
-        new CostsDataFormatter(this.openEditCostForm.bind(this)).formatArray(
-          data
-        )
-      );
+      this.loader.done(this.container.element);
+      this.table.updateTable(new CostsDataFormatter().formatArray(data));
     });
   }
 }

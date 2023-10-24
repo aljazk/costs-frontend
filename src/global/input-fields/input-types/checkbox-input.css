@@ -1,0 +1,16 @@
+div.checkbox_input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  cursor: pointer;
+  align-items: center;
+}
+div.checkbox_input * {
+  cursor: pointer;
+}
+div.checkbox_input > input {
+  width: 1.5em; /* Adjust the width to make it bigger */
+  height: 1.5em; /* Adjust the height to make it bigger */
+  margin-right: 5px; /* Add spacing between the checkbox and label */
+  vertical-align: middle;
+}

@@ -1,15 +1,24 @@
+import { ErrorDisplay } from '../../error/error-display.js';
 import { FormInputFormatter } from '../data/formatting/form-input-formatter.js';
+import { InputField } from '../input-fields/input-field.js';
+import { MultipleSelect } from '../input-fields/input-types/multiple-select.js';
+import { Anchor } from './anchor.js';
 import { Button } from './button.js';
 import { Display } from './display.js';
 
-let id = 0;
 export class Form extends Display {
-  constructor(appendTo) {
+  constructor(
+    backHref,
+    appendTo,
+    formInputsFormatter = new FormInputFormatter()
+  ) {
     super('form', appendTo);
+    this.formInputsFormatter = formInputsFormatter;
     this.form = this.element;
     this.form.classList.add('form');
+    this.inputs = [];
     this.createInputsHoldingDiv();
-    this.createButtons();
+    this.createButtons(backHref);
     this.loadStyle(import.meta.url, 'form.css');
   }
 
@@ -22,49 +31,59 @@ export class Form extends Display {
     this.form.appendChild(this.inputsHoldingDiv);
   }
 
-  createButtons() {
-    this.createSubmitButton();
-    this.createCancelButton();
+  createButtons(backHref) {
+    this.createSubmitButton(backHref);
+    this.createCancelButton(backHref);
   }
 
-  createSubmitButton() {
-    this.submitButton = new Button('Submit', this.form, this.submit.bind(this));
+  createSubmitButton(backHref) {
+    this.submitButton = new Button(
+      'Submit',
+      this.form,
+      this.submit.bind(this, backHref)
+    );
   }
 
-  createCancelButton() {
-    this.submitButton = new Button('Cancel', this.form, this.cancel.bind(this));
+  createCancelButton(backHref) {
+    this.cancelButton = new Anchor('Cancel', backHref, this.form);
   }
 
   getInputs() {
-    return this.form.getElementsByTagName('input');
+    return this.inputs;
   }
 
   getFormObject() {
     const obj = {};
-    for (const input of this.getInputs()) {
-      obj[input.name] = input.value;
+    for (const inputField of this.getInputs()) {
+      const input = inputField.input;
+      obj[input.name] = input.customValue ?? input.value;
     }
     return obj;
   }
 
   fillForm(obj) {
-    const inputObj = new FormInputFormatter().formatObject(obj);
-    for (const input of this.getInputs()) {
-      console.log(input);
-      input.value = inputObj[input.name];
+    const inputObj = this.formInputsFormatter.formatObject(obj);
+    console.log('Filling form with:', inputObj);
+    for (const inputField of this.getInputs()) {
+      const inputName = inputField.input.name;
+      if (inputField.setCustomValue) {
+        inputField.setCustomValue(inputObj[inputName]);
+      }
+      inputField.input.value = inputObj[inputName];
     }
   }
 
-  submit($event) {
+  submit(backHref, $event) {
     $event.preventDefault();
     const formObject = this.getFormObject();
     console.log(formObject);
-    this.onSubmit(formObject);
-  }
-
-  cancel($event) {
-    $event.preventDefault();
-    this.onCancel();
+    this.onSubmit(formObject)
+      .then(() => {
+        anchorEvent(backHref)();
+      })
+      .catch((error) => {
+        new ErrorDisplay(error, this.element);
+      });
   }
 
   onSubmit() {
@@ -72,15 +91,12 @@ export class Form extends Display {
   }
 
   addInput(label, type = 'text') {
-    const labelEle = document.createElement('label');
-    labelEle.innerText = label;
-    labelEle.for = id++;
-    const input = document.createElement('input');
-    input.type = type;
-    input.id = id;
-    input.name = label;
-    this.inputsHoldingDiv.appendChild(labelEle);
-    this.inputsHoldingDiv.appendChild(input);
+    const input = new InputField(label, type, this.inputsHoldingDiv);
+    this.inputs.push(input);
     return input;
+  }
+
+  addCustomInput(customInput) {
+    this.inputs.push(customInput);
   }
 }

@@ -1,12 +1,12 @@
 import { CurrencyFormatter } from '../global/data/formatting/currency-formatter.js';
 import { DisplayFormatter } from '../global/data/formatting/display-formatter.js';
+import { Anchor } from '../global/displays/anchor.js';
 import { Button } from '../global/displays/button.js';
 import { TypesListDisplay } from '../types/types-list-display.js';
 
 export class CostsDataFormatter extends DisplayFormatter {
-  constructor(toggleAddCostsForm) {
+  constructor() {
     super();
-    this.toggleAddCostsForm = toggleAddCostsForm;
     const currencyFormatter = new CurrencyFormatter();
     this.customKeyFormatterMap.set(
       'value',
@@ -19,15 +19,7 @@ export class CostsDataFormatter extends DisplayFormatter {
 
   formatObject(obj) {
     const formattedObject = super.formatObject(obj);
-    formattedObject.edit = new Button('Edit', null, (value) => {
-      this.onEditClicked(obj);
-    }).element;
-    console.log(formattedObject);
+    formattedObject.edit = new Anchor('Edit', '/costs/edit/' + obj.id).element;
     return formattedObject;
-  }
-
-  onEditClicked(data) {
-    console.log(data);
-    this.toggleAddCostsForm(data);
   }
 }

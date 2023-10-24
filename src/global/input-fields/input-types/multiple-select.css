@@ -1,0 +1,8 @@
+div.multiple_select {
+  display: flex;
+  flex-direction: column;
+}
+
+div.options_holder {
+  display: flex;
+}

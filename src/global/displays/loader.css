@@ -1,0 +1,17 @@
+div.loader > div {
+  width: 2rem;
+  height: 2rem;
+  border: 0.2rem solid rgba(0, 0, 0, 0.2);
+  border-top: 0.2rem solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
