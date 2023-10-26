@@ -1,6 +1,5 @@
-import { Display } from '../../displays/display.js';
+import { Display } from '../../../display.js';
 import { InputField } from '../input-field.js';
-import { Label } from '../label.js';
 import { CheckboxInput } from './checkbox-input.js';
 
 export class MultipleSelect extends InputField {

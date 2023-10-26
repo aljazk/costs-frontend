@@ -1,4 +1,4 @@
-import { Anchor } from './global/displays/anchor.js';
+import { Anchor } from './global/displays/buttons/anchor.js';
 import { View } from './global/displays/view.js';
 
 export class Menu extends View {

@@ -1,4 +1,4 @@
-import { Display } from '../displays/display.js';
+import { Display } from '../../display.js';
 
 export class Label extends Display {
   constructor(text, labelFor, appendTo) {

@@ -1,4 +1,4 @@
-import { PageLoader } from '../global/displays/page-loader.js';
+import { PageLoader } from '../global/displays/loaders/page-loader.js';
 import { CostsRepository } from './cost.repository.js';
 import { CostsForm } from './costs-form.js';
 

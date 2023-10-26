@@ -1,7 +1,7 @@
 import { CurrencyFormatter } from '../global/data/formatting/currency-formatter.js';
 import { DisplayFormatter } from '../global/data/formatting/display-formatter.js';
-import { Anchor } from '../global/displays/anchor.js';
-import { Button } from '../global/displays/button.js';
+import { Anchor } from '../global/displays/buttons/anchor.js';
+import { Button } from '../global/displays/buttons/button.js';
 import { TypesListDisplay } from '../types/types-list-display.js';
 
 export class CostsDataFormatter extends DisplayFormatter {

@@ -1,6 +1,6 @@
 import { ErrorDisplay } from '../error/error-display.js';
-import { Loader } from '../global/displays/loader.js';
-import { MultipleSelect } from '../global/input-fields/input-types/multiple-select.js';
+import { Loader } from '../global/displays/loaders/loader.js';
+import { MultipleSelect } from '../global/displays/form/input-fields/input-types/multiple-select.js';
 import { TypesRepository } from './types.repository.js';
 
 export class TypesSelect extends MultipleSelect {

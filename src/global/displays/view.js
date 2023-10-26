@@ -1,5 +1,5 @@
 import { Display } from './display.js';
-import { PageLoader } from './page-loader.js';
+import { PageLoader } from './loaders/page-loader.js';
 
 export class View extends Display {
   constructor(appendTo) {

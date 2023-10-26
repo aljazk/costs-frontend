@@ -1,5 +1,5 @@
 import { FileDirectory } from '../file-directory.js';
-import { CSSLoader } from './css-loader.js';
+import { CSSLoader } from './loaders/css-loader.js';
 
 export class Display {
   /**

@@ -1,4 +1,4 @@
-import { Display } from '../displays/display.js';
+import { Display } from '../../display.js';
 import { Label } from './label.js';
 
 export class InputField extends Display {

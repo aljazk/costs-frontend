@@ -1,10 +1,9 @@
-import { ErrorDisplay } from '../../error/error-display.js';
-import { FormInputFormatter } from '../data/formatting/form-input-formatter.js';
-import { InputField } from '../input-fields/input-field.js';
-import { MultipleSelect } from '../input-fields/input-types/multiple-select.js';
-import { Anchor } from './anchor.js';
-import { Button } from './button.js';
-import { Display } from './display.js';
+import { ErrorDisplay } from '../../../error/error-display.js';
+import { FormInputFormatter } from '../../data/formatting/form-input-formatter.js';
+import { InputField } from './input-fields/input-field.js';
+import { Anchor } from '../buttons/anchor.js';
+import { Button } from '../buttons/button.js';
+import { Display } from '../display.js';
 
 export class Form extends Display {
   constructor(

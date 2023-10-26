@@ -1,4 +1,4 @@
-import { Form } from '../global/displays/form.js';
+import { Form } from '../global/displays/form/form.js';
 import { TypesSelect } from '../types/types-select.js';
 
 export class CostsForm extends Form {

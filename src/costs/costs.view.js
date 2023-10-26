@@ -1,4 +1,4 @@
-import { Anchor } from '../global/displays/anchor.js';
+import { Anchor } from '../global/displays/buttons/anchor.js';
 import { Table } from '../global/displays/table.js';
 import { View } from '../global/displays/view.js';
 import { CostsRepository } from './cost.repository.js';

@@ -1,4 +1,4 @@
-import { Display } from './display.js';
+import { Display } from '../display.js';
 
 export class Anchor extends Display {
   constructor(text, href, appendTo) {
