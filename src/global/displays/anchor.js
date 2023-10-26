@@ -6,7 +6,17 @@ export class Anchor extends Display {
     this.a = this.element;
     this.a.innerText = text;
     this.a.href = href;
-    this.a.addEventListener('click', anchorEvent(href));
+    this.a.addEventListener('click', this.anchorEvent(href).bind(this));
     this.loadStyle(import.meta.url, 'button.css');
   }
+
+  navigate(href) {
+    window.history.pushState({}, '', href);
+    window.mainRouter.activate(window.location.pathname);
+  }
+
+  anchorEvent = (href) => ($event) => {
+    $event?.preventDefault();
+    this.navigate(href);
+  };
 }

@@ -1,7 +1,7 @@
 import { Display } from './display.js';
 
 export class Loader extends Display {
-  constructor(appendTo, size) {
+  constructor(appendTo) {
     super('div', appendTo);
     this.makeSpinner();
     this.element.classList.add('loader');
