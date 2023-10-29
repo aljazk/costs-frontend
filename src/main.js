@@ -1,5 +1,5 @@
 import { Display } from './global/displays/display.js';
-import { MainRouter } from './router.js';
+import { MainRouter } from './main-router.js';
 
 const content = new Display('div', document.body);
 

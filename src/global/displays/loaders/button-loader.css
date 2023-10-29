@@ -1,0 +1,11 @@
+div.button_loader {
+  display: flex;
+  justify-content: center;
+}
+
+div.button_loader.loader > div {
+  width: 1rem;
+  height: 1rem;
+  border-width: 0.1rem;
+  border-top-width: 0.1rem;
+}

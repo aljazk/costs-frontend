@@ -10,13 +10,12 @@ export class Anchor extends Display {
     this.loadStyle(import.meta.url, 'button.css');
   }
 
-  navigate(href) {
-    window.history.pushState({}, '', href);
-    window.mainRouter.activate(window.location.pathname);
-  }
-
   anchorEvent = (href) => ($event) => {
     $event?.preventDefault();
-    this.navigate(href);
+    window.mainRouter.activate(href);
   };
+
+  navigate(href) {
+    this.anchorEvent(href)();
+  }
 }

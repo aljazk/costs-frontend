@@ -1,0 +1,8 @@
+div.delete_type_message {
+  display: flex;
+  flex-direction: column;
+}
+
+div.delete_type_message > span {
+  margin: 1rem;
+}

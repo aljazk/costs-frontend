@@ -68,6 +68,7 @@ export class Form extends Display {
       if (inputField.setCustomValue) {
         inputField.setCustomValue(inputObj[inputName]);
       }
+      console.log(inputObj[inputName], inputName, inputObj);
       inputField.input.value = inputObj[inputName];
     }
   }
@@ -78,7 +79,7 @@ export class Form extends Display {
     console.log(formObject);
     this.onSubmit(formObject)
       .then(() => {
-        anchorEvent(backHref)();
+        new Anchor().anchorEvent(backHref)();
       })
       .catch((error) => {
         new ErrorDisplay(error, this.element);

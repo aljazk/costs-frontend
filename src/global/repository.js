@@ -88,4 +88,28 @@ export class Repository {
         });
     });
   }
+
+  /**
+   * Makes an HTTP DELETE request.
+   * @param {number} id Cost id
+   * @param {string} suffix String to append after rootUrl
+   * @returns {Promise} A promise that can resolve into data or an error received from the backend.
+   */
+  delete(id, suffix = '') {
+    return new Promise((resolve, reject) => {
+      fetch(this.rootUrl + suffix + '/' + id, {
+        method: 'DELETE',
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          // No need to parse the response body for DELETE requests
+          resolve('Deleted successfully');
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
 }

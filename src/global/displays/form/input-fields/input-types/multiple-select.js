@@ -60,9 +60,11 @@ export class MultipleSelect extends InputField {
     }
     for (const checkbox of this.checkboxes) {
       const checkboxInput = checkbox.input;
-      const value = values?.find((value) => value.id == checkboxInput.value);
+      const value = values?.find(
+        (value) => value.id.toString() === checkboxInput.value
+      );
       if (value) {
-        this.input.customValue.push(value.id);
+        this.input.customValue.push(value.id.toString());
         checkboxInput.checked = true;
       } else {
         checkboxInput.checked = false;
@@ -76,11 +78,13 @@ export class MultipleSelect extends InputField {
    * @param {boolean} value
    */
   updateValue(inputName, value) {
-    const array = this.input.customValue;
+    let array = this.input.customValue;
     if (value === true) {
-      array.push(inputName);
+      if (!array.includes(inputName)) {
+        array.push(inputName);
+      }
     } else {
-      array.splice(array.indexOf(inputName));
+      array.splice(array.indexOf(inputName), 1);
     }
   }
 }

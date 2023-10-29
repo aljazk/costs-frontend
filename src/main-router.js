@@ -1,3 +1,4 @@
+import { Anchor } from './global/displays/buttons/anchor.js';
 import { Router } from './global/router.js';
 import { Menu } from './menu.js';
 
@@ -29,7 +30,7 @@ export class MainRouter extends Router {
               path: '',
               activate: (appendTo, path) => {
                 if (path === '') {
-                  //   anchorEvent('/costs')();
+                  new Anchor().navigate('/costs');
                 } else {
                   new ErrorView(appendTo.element);
                 }
@@ -44,6 +45,7 @@ export class MainRouter extends Router {
   }
 
   activate(path) {
+    window.history.pushState({}, '', path);
     super.activate(this.container, path);
   }
 

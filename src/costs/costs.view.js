@@ -9,7 +9,7 @@ export class CostsView extends View {
     super(appendTo);
     this.costsRepository = new CostsRepository();
 
-    new Anchor('Add cost', 'costs/add', this.container);
+    new Anchor('Add cost', '/costs/add', this.container);
 
     this.table = new Table(this.container);
 

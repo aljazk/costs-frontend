@@ -15,7 +15,7 @@ export class Button extends Display {
     this.loadStyle(import.meta.url, 'button.css');
     this.setText(text);
     if (onClick) {
-      this.button.addEventListener('click', onClick);
+      this.addOnClickEvent(onClick);
     }
   }
 
@@ -29,5 +29,13 @@ export class Button extends Display {
 
   addOnClickEvent(onClick) {
     this.button.addEventListener('click', onClick);
+  }
+
+  disable() {
+    this.element.disabled = true;
+  }
+
+  enable() {
+    this.element.disabled = false;
   }
 }

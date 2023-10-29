@@ -1,6 +1,7 @@
 import { Display } from './display.js';
 
 export class Table extends Display {
+  //TODO make table updatable
   constructor(appendTo) {
     super('table', appendTo);
     this.table = this.element;
@@ -8,7 +9,7 @@ export class Table extends Display {
   }
 
   clearTable() {
-    this.removeAllChildNodes(this.table);
+    this.removeAllChildNodes();
   }
 
   buildHeader(data) {
